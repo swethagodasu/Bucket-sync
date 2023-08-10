@@ -19,7 +19,7 @@ jobs:
         uses: 'google-github-actions/setup-gcloud@v0'
         with:
           project_id: gcp-bucket-sync
-          credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+          service_account_key: '${{ secrets.GCP_CREDENTIALS }}'
           export_default_credentials: true
           
   #Bucket sync
