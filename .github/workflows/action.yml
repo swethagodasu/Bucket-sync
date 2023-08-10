@@ -10,11 +10,20 @@ jobs:
     name: Deploy
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-
+      - name: checkout
+        uses: actions/checkout@v2
+      
+# # Authentication via credentials json
+#       - name: Google Auth
+#         id: auth
+#         uses: 'google-github-actions/auth@v0'
+#         with:
+#           credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+          
+  #Bucket sync
       - name: Sync
         uses: swethagodasu/Bucket-sync@main
         with:
-           secrets: ${{ secrets.google_service_account_credentials }}
-           bucket: 'bucket-sync-99'
+           secrets: ${{ secrets.GCP_CREDENTIALS }}
+           bucket: 'bucket-sync-99/sync'
            exclude: '.*\.md$|\.gitignore$|\.git/.*$|\.github/.*$'
