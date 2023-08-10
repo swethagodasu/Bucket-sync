@@ -13,8 +13,8 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Sync
-        uses: swethagodasu/Bucket-sync@v0
-#         with:
-#           secrets: ${{ secrets.google_service_account_credentials }}
-#           bucket: 'bucket-sync-99'
-#           exclude: '.*\.md$|\.gitignore$|\.git/.*$|\.github/.*$'
+        uses: swethagodasu/Bucket-sync@main
+        with:
+           secrets: ${{ secrets.google_service_account_credentials }}
+           bucket: 'bucket-sync-99'
+           exclude: '.*\.md$|\.gitignore$|\.git/.*$|\.github/.*$'
