@@ -24,6 +24,6 @@ jobs:
       - name: Sync
         uses: swethagodasu/Bucket-sync@main
         with:
-           secrets: ${{ secrets.GCP_CREDENTIALS }}
+           credentials_json: ${{ secrets.GCP_CREDENTIALS }}
            bucket: 'bucket-sync-99/sync'
            exclude: '.*\.md$|\.gitignore$|\.git/.*$|\.github/.*$'
