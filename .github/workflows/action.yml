@@ -24,7 +24,7 @@ jobs:
   #Bucket sync
       - name: Sync
         run: |
-          gsutil -m rsync -r -x ".*\./*" . gs://bucket-sync-99
+          gsutil -m rsync -r -x ".*\./*" -d . gs://bucket-sync-99
           
 #         uses: swethagodasu/Bucket-sync@main
 #         with:
