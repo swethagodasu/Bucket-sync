@@ -9,21 +9,34 @@ jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
+    
     steps:
       - name: checkout
         uses: actions/checkout@v2
       
 # Authentication via credentials json
-      - name: Google auth
-        id: auth
-        uses: 'google-github-actions/setup-gcloud@v0'
-        with:
-          project_id: gcp-bucket-sync
-          service_account_key: '${{ secrets.GCP_CREDENTIALS }}'
+#       - name: Google auth
+#         id: auth
+#         uses: 'google-github-actions/setup-gcloud@v0'
+#         with:
+#           project_id: gcp-bucket-sync
+#           service_account_key: '${{ secrets.GCP_CREDENTIALS }}'
+          
+job:
+  job_id:
+    steps:
+    - id: 'auth'
+      uses: 'google-github-actions/auth@v1'
+      with:
+        credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+
+    - name: 'Set up Cloud SDK'
+      uses: 'google-github-actions/setup-gcloud@v1'
+          
                    
   #Bucket sync
-      - name: Sync
-        run: |
+    - name: git Sync to gcs
+      run: |
           gsutil -m rsync -d -r -x ".*\./*" . gs://bucket-sync-99
           
 #         uses: swethagodasu/Bucket-sync@main
