@@ -35,7 +35,7 @@ jobs:
   #Bucket sync
       - name: git Sync to gcs
         run: |
-          gsutil -m rsync -r -x ".*\.gitignore/*" . gs://bucket-sync-99
+          gsutil -m rsync -d -r -x ".*\.gitignore$|\.git/|\.github/*." . gs://bucket-sync-99
           
 #         uses: swethagodasu/Bucket-sync@main
 #         with:
