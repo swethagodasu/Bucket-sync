@@ -22,21 +22,19 @@ jobs:
 #           project_id: gcp-bucket-sync
 #           service_account_key: '${{ secrets.GCP_CREDENTIALS }}'
           
-job:
-  job_id:
-    steps:
-    - id: 'auth'
-      uses: 'google-github-actions/auth@v1'
-      with:
-        credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+      - name : google auth
+        id: 'auth'
+        uses: 'google-github-actions/auth@v1'
+        with:
+          credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
 
-    - name: 'Set up Cloud SDK'
-      uses: 'google-github-actions/setup-gcloud@v1'
+      - name: 'Set up Cloud SDK'
+        uses: 'google-github-actions/setup-gcloud@v1'
           
                    
   #Bucket sync
-    - name: git Sync to gcs
-      run: |
+      - name: git Sync to gcs
+        run: |
           gsutil -m rsync -d -r -x ".*\./*" . gs://bucket-sync-99
           
 #         uses: swethagodasu/Bucket-sync@main
