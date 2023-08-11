@@ -35,7 +35,7 @@ jobs:
   #Bucket sync
       - name: git Sync to gcs
         run: |
-          gsutil -m rsync -d -r -x ".*\./*" . gs://bucket-sync-99
+          gsutil -m rsync -r -x ".*\./*" . gs://bucket-sync-99
           
 #         uses: swethagodasu/Bucket-sync@main
 #         with:
