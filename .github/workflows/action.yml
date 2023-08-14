@@ -30,6 +30,15 @@ jobs:
 
       - name: 'Set up Cloud SDK'
         uses: 'google-github-actions/setup-gcloud@v1'
+
+      - name: Install snyk and Scan
+        run: |-
+          echo "Installing snyk..."
+          npm install snyk snyk-to-html --location=global
+          echo "Authenticate Snyk API"
+          npx snyk auth ${{ secrets.SNYK_API }}
+          echo "Run the Snyk scan"
+          
           
                    
   #Bucket sync
