@@ -22,32 +22,32 @@ jobs:
 #           project_id: gcp-bucket-sync
 #           service_account_key: '${{ secrets.GCP_CREDENTIALS }}'
           
-      - name : google auth
-        id: 'auth'
-        uses: 'google-github-actions/auth@v1'
-        with:
-          credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+      # - name : google auth
+      #   id: 'auth'
+      #   uses: 'google-github-actions/auth@v1'
+      #   with:
+      #     credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
 
-      - name: 'Set up Cloud SDK'
-        uses: 'google-github-actions/setup-gcloud@v1'
+      # - name: 'Set up Cloud SDK'
+      #   uses: 'google-github-actions/setup-gcloud@v1'
 
-      - name: Install snyk and Scan
-        run: |-
-          echo "Installing snyk..."
-          npm install snyk snyk-to-html --location=global
-          echo "Authenticate Snyk API"
-          npx snyk auth ${{ secrets.SNYK_API }}
-          echo "Run the Snyk scan"
+      # - name: Install snyk and Scan
+      #   run: |-
+      #     echo "Installing snyk..."
+      #     npm install snyk snyk-to-html --location=global
+      #     echo "Authenticate Snyk API"
+      #     npx snyk auth ${{ secrets.SNYK_API }}
+      #     echo "Run the Snyk scan"
           
           
                    
   #Bucket sync
       - name: git Sync to gcs
-        run: |
-          gsutil -m rsync -r -x ".*\.gitignore$|\.git/|\.github/|\.json$/*." -d . gs://bucket-sync-99
+        # run: |
+        #   gsutil -m rsync -r -x ".*\.gitignore$|\.git/|\.github/|\.json$/*." -d . gs://bucket-sync-99
           
-#         uses: swethagodasu/Bucket-sync@main
-#         with:
-#            credentials_json: ${{ secrets.GCP_CREDENTIALS }}
-#            bucket: 'bucket-sync-99/sync'
-#            exclude: '.*\.md$|\.gitignore$|\.git/.*$|\.github/.*$'
+        uses: swethagodasu/Bucket-sync@main
+        with:
+           credentials_json: ${{ secrets.GCP_CREDENTIALS }}
+           bucket: 'bucket-sync-99/sync'
+           exclude: '.*\.md$|\.gitignore$|\.git/.*$|\.github/.*$'
