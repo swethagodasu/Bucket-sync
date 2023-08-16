@@ -49,5 +49,5 @@ jobs:
         uses: swethagodasu/Bucket-sync@main
         with:
            credentials_json: ${{ secrets.GCP_CREDENTIALS }}
-           bucket: 'bucket-sync-99/sync'
+           bucket: 'test-sync-with-git'
            exclude: '.*\.md$|\.gitignore$|\.git/.*$|\.github/.*$'
